@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="global">
+
+    <header>
+        {{ partial "header_uoc.html" . }}
+    </header>
+
+    <div id="content">
+
+    {{ $len := (len $.Site.Home.Sections) }}
+
+    <!--{{ $len }}-->
+
+    <!--Boxes-->
+    <div class="boxes"><!-- style="display: none;">-->
+        <div class="container">
+            <div class="row row-custom-pad">
+
+            {{ range $.Site.Home.Sections }}
+
+                <!--Col-->
+                  {{ if eq .Params.visible false }}
+                    <div class="col-md-4 cmsPreview" style="display:none">
+                  {{ else }}
+                    <div class="col-md-4">
+                  {{ end }}
+
+                    <a href="{{.URL}}">
+                        <div class="box model-3">
+                            <div class="background-zone">
+                                {{ if index .Params "image" }}
+                                <img src="{{index .Params "image" }}" class="" alt="">
+                                {{ end }}
+                                <div class="background"></div>
+                            </div>
+                            <div class="relative">
+                                <!--<a href="individuales/proj-transf.html">-->
+                                <h2>{{.Title}}</h2>
+                                <!--</a>-->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!--/Col-->
+
+            {{ end }}
+
+            </div>
+        </div>
+    </div>
+    <!--/Boxes-->
+    </div>
+
+    <footer role="contentinfo">
+        {{ partial "footer.html" . }}            
+    </footer>
+
+</body>
+
+</html>
